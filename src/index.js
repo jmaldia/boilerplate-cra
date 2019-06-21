@@ -40,11 +40,7 @@ const NoteApp = () => {
             <h1>Notes</h1>
             {
                 notes.map((note) => (
-                    <div key={ note.title } >
-                        <h3>{ note.title }</h3> 
-                        <p>{ note.body }</p> 
-                        <button onClick={ () => removeNote(note.title) }>delete</button>
-                    </div>
+                    <Note key={ note.title }  title={ note.title } body={ note.body } removeNote={ removeNote } />
                 ))
             }
             <p>add note</p>
@@ -55,6 +51,24 @@ const NoteApp = () => {
             </form>
         </div>
     )
+}
+
+const Note = ({ title, body, removeNote }) => {
+    useEffect(() => {
+        console.log('Inside Notes')
+
+        return () => {
+            console.log('Cleaning up effect!');
+        }
+    }, []);
+
+    return (
+        <div>
+            <h3>{ title }</h3> 
+            <p>{ body }</p> 
+            <button onClick={ () => removeNote(title) }>delete</button>
+        </div>
+    );
 }
 
 // const App = (props) => {
